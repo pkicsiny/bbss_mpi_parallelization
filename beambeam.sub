@@ -1,0 +1,16 @@
+scan_params = '[""n_slices"",""n_macroparts""]'
+
+executable          = runSim.sh
+arguments           = "$(scan_params) $(ProcId)"
+output              = batchlog/runSim.$(ClusterId).$(ProcId).out
+error               = batchlog/runSim.$(ClusterId).$(ProcId).err
+log                 = batchlog/runSim.$(ClusterId).log
+transfer_input_files    = mpi_parallelization.py, src/src.py, src/profiler.py, input_files/config.py
+#transfer_output_files = outputs/
+
+# no of cores per job, more than 1 if code is parallelised
+request_cpus        = 1
+requirements = (OpSysAndVer =?= "CentOS7")
++JobFlavour        = "nextweek" 
+# microcentury, longlunch, workday, tomorrow
+queue 80
